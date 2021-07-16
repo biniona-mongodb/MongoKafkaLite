@@ -1,0 +1,4 @@
+FROM mongo:latest
+
+COPY config-replca.js /docker-entrypoint-initdb.d/
+
