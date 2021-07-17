@@ -1,4 +1,5 @@
 FROM mongo:latest
 
-COPY config-replca.js /docker-entrypoint-initdb.d/
+COPY config-replica.js /
 
+RUN mongo --eval /config-replica.js
