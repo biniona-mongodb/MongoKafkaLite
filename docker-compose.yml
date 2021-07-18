@@ -91,6 +91,22 @@ services:
     entrypoint: [ "bash", "-c", "sleep 10 && mongo --host mongodb://mongo1:27017 config-replica.js && sleep 10 && mongo --host mongodb://mongo1:27017 config-data.js"]      
     restart: "no"
 
+  shell:
+    image: "kafka-edu-shell:1.0"
+    container_name: shell
+    build:
+      context: .
+      dockerfile: Dockerfile-shell
+    depends_on:
+      - zookeeper
+      - broker
+      - connect
+      - mongo1
+    networks:
+      - localnet
+    command: bash -c "./initialize-container.sh ; tail -f /dev/null"
+
+
 networks:
   localnet:
     attachable: true
