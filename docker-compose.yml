@@ -91,8 +91,6 @@ services:
       context: .
       dockerfile: Dockerfile-Mongo
     command: --replSet rs0
-    volumes:
-      - rs1:/data/db
     networks:
       - localnet
     ports:
@@ -102,6 +100,3 @@ services:
 networks:
   localnet:
     attachable: true
-
-volumes:
-  rs1:

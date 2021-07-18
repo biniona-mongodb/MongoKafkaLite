@@ -1,5 +1,4 @@
 FROM mongo:latest
-
-COPY config-replica.js /
-
-RUN mongo --eval /config-replica.js
+RUN apt-get update; apt-get install curl; apt-get install -y kafkacat
+COPY config-replica.js config-data.js source-connector.json sink-connector.json initialize-container.sh /
+RUN chmod +x initialize-container.sh
