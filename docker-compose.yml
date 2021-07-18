@@ -81,6 +81,16 @@ services:
       - "27017:27017"
     restart: always
 
+  mongo1-setup:
+    image: "mongo:latest"
+    container_name: mongo1-setup
+    depends_on:
+      - mongo1
+    networks:
+      - localnet
+    entrypoint: [ "bash", "-c", "sleep 10 && mongo --host mongodb://mongo1:27017 config-replica.js && sleep 10 && mongo --host mongodb://mongo1:27017 config-data.js"]      
+    restart: "no"
+
 networks:
   localnet:
     attachable: true
