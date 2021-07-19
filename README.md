@@ -16,7 +16,7 @@ To start the services
 
 Once you have started the service run the following command to enter the shell:
 
-    docker exec -it shell /bin/sh
+    docker exec -it shell /bin/bash
 
 Once you are in the shell run the following command to connect to the replica
 set: 
