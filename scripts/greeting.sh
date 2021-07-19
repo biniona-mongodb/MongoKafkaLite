@@ -15,4 +15,4 @@ echo " //  / /| | | || | / __|| |/ /\ \ | __|/ _\` || '__|| __|                 
 echo "/ \_/ / | |_| || || (__ |   < _\ \| |_| (_| || |   | |_                                                   ";
 echo "\___,_\  \__,_||_| \___||_|\_\\__/ \__|\__,_||_|    \__|                                                  ";
 echo "                                                                                                          ";
-echo -e "Version 1.0\n\nTools installed:\n\nKafkacat - Apache Kafka command line producer and consumer tool for Kafka\nMongoSH - MongoDB command line shell\n\n"
+echo -e "Version 1.0\n\nTools installed:\n\nKafkacat - Apache Kafka command line producer and consumer tool for Kafka\nMongoSH - MongoDB command line shell\n\nTo connect to the MongoDB shell issue:\n\nmongosh mongodb://mongo1:27017/?replicaSet=rs0\n\n\n"

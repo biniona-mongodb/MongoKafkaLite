@@ -88,7 +88,7 @@ services:
       - mongo1
     networks:
       - localnet
-    entrypoint: [ "bash", "-c", "sleep 10 && mongo --host mongodb://mongo1:27017 config-replica.js && sleep 10 && mongo --host mongodb://mongo1:27017 config-data.js"]      
+    entrypoint: [ "bash", "-c", "sleep 10 && mongo --host mongodb://mongo1:27017 config-replica.js"]      
     restart: "no"
 
   shell:
