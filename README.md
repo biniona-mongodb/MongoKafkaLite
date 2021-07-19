@@ -12,7 +12,7 @@ In this example, we will spin up a bare bones MongoDB and Apache Kafka configura
 
 To start the services 
 
-    docker-compose up
+    docker-compose up -d
 
 Once you have started the service run the following command to enter the shell:
 
@@ -27,7 +27,7 @@ Once you connect to the replica set, run these commands in the mongodb shell to
 upload a document to the `source` collection in the `quickstart` database:
 
     use quickstart
-    db.source.insertOne({"hello":"kafka"})`
+    db.source.insertOne({"hello":"kafka"})
 
 After you insert a document, wait 5-10 seconds and run the following command:
 
