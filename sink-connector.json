@@ -2,8 +2,11 @@
    "config": {
      "connector.class":"com.mongodb.kafka.connect.MongoSinkConnector",
      "connection.uri":"mongodb://mongo1",
-     "change.data.capture.handler": "com.mongodb.kafka.connect.sink.cdc.mongodb.ChangeStreamHandler",
      "database":"quickstart",
      "collection":"sink",
-     "topics":"quickstart.source"
+     "topics":"quickstart.source",
+     "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+     "value.converter.schemas.enable": "false",
+     "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+     "key.converter.schemas.enable": "false"
 }}
