@@ -67,22 +67,6 @@ services:
       CONNECT_AUTO_CREATE_TOPICS_ENABLE: "true"
       CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
       CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
-      
-  rest-proxy:
-    image: confluentinc/cp-kafka-rest:latest
-    depends_on:
-      - zookeeper
-      - broker
-    ports:
-      - 8082:8082
-    hostname: rest-proxy
-    container_name: rest-proxy
-    networks:
-      - localnet
-    environment:
-      KAFKA_REST_HOST_NAME: rest-proxy
-      KAFKA_REST_BOOTSTRAP_SERVERS: 'broker:29092'
-      KAFKA_REST_LISTENERS: "http://0.0.0.0:8082"
 
   mongo1:
     image: "mongo:latest"
@@ -91,17 +75,38 @@ services:
       context: .
       dockerfile: Dockerfile-Mongo
     command: --replSet rs0
-    volumes:
-      - rs1:/data/db
     networks:
       - localnet
     ports:
       - "27017:27017"
     restart: always
 
+  mongo1-setup:
+    image: "mongo:latest"
+    container_name: mongo1-setup
+    depends_on:
+      - mongo1
+    networks:
+      - localnet
+    entrypoint: [ "bash", "-c", "sleep 10 && mongo --host mongodb://mongo1:27017 config-replica.js && sleep 10 && mongo --host mongodb://mongo1:27017 config-data.js"]      
+    restart: "no"
+
+  shell:
+    image: "kafka-edu-shell:1.0"
+    container_name: shell
+    build:
+      context: .
+      dockerfile: Dockerfile-shell
+    depends_on:
+      - zookeeper
+      - broker
+      - connect
+      - mongo1
+    networks:
+      - localnet
+    command: bash -c "./initialize-container.sh ; tail -f /dev/null"
+
+
 networks:
   localnet:
     attachable: true
-
-volumes:
-  rs1:
