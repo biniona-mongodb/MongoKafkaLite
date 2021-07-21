@@ -32,7 +32,7 @@ services:
       KAFKA_DELETE_TOPIC_ENABLE: "true" 
 
   connect:
-    image: confluentinc/cp-kafka-connect-base:latest
+    image: quickstart-connect:1.0
     build:
       context: .
       dockerfile: Dockerfile-MongoConnect
@@ -62,7 +62,7 @@ services:
       CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
 
   mongo1:
-    image: "mongo:latest"
+    image: "quickstart-mongod:1.0"
     container_name: mongo1
     build:
       context: .
@@ -73,7 +73,7 @@ services:
     restart: always
 
   mongo1-setup:
-    image: "mongo:latest"
+    image: "quickstart-mongod:1.0"
     container_name: mongo1-setup
     depends_on:
       - mongo1
@@ -83,7 +83,7 @@ services:
     restart: "no"
 
   shell:
-    image: "kafka-edu-shell:1.0"
+    image: "quickstart-shell:1.0"
     container_name: shell
     build:
       context: .
@@ -95,7 +95,7 @@ services:
       - mongo1
     networks:
       - localnet
-    command: bash -c "./initialize-container.sh ; tail -f /dev/null"
+    command: "tail -f /dev/null"
 
 
 networks:
