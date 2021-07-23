@@ -9,7 +9,7 @@ COPY source-connector.json sink-connector.json sink-connector-cdc.json initializ
 RUN chmod +x initialize-container.sh
 
 # Modify command prompt
-RUN echo 'PS1="\[\e[32m\][\e[mMongoDB Kafka Connector Quickstart\e[32m]\e[m : "' >> ~/.bashrc
+RUN echo 'PS1="\[\e[32m\][\e[mMongoDB Kafka Connector Quick Start\e[32m]\e[m : "' >> ~/.bashrc
 
 # Add welcome text
 COPY greeting.sh /
