@@ -15,6 +15,10 @@ RUN echo 'PS1="\[\e[32m\][\e[mMongoDB Kafka Connector Quick Start\e[32m]\e[m : "
 COPY greeting.sh /
 RUN cat greeting.sh >> ~/.bashrc
 
+# Add script for Schema Registry
+COPY schema.sh /
+RUN chmod +x schema.sh
+
 # Cleanup
 RUN rm mongosh.deb
 RUN rm greeting.sh

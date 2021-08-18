@@ -61,6 +61,19 @@ services:
       CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
       CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
 
+  schema-registry:
+      image: confluentinc/cp-schema-registry:5.3.0
+      hostname: schema-registry
+      container_name: schema-registry
+      depends_on:
+        - zookeeper
+        - broker
+      networks:
+        - localnet
+      environment:
+        SCHEMA_REGISTRY_HOST_NAME: schema-registry
+        SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: "PLAINTEXT://broker:29092"
+
   mongo1:
     image: "quickstart-mongod:1.0"
     container_name: mongo1
