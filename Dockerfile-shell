@@ -16,10 +16,11 @@ COPY greeting.sh /
 RUN cat greeting.sh >> ~/.bashrc
 
 # Add script for Schema Registry
-COPY schema.sh schema_protobuf.sh schema_avro.sh /
+COPY schema.sh schema_protobuf.sh schema_avro.sh schema_json_schema.sh /
 RUN chmod +x schema.sh
 RUN chmod +x schema_avro.sh
 RUN chmod +x schema_protobuf.sh
+RUN chmod +x schema_json_schema.sh
 
 # Cleanup
 RUN rm mongosh.deb
