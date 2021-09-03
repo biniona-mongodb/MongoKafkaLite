@@ -95,7 +95,7 @@ services:
       - mongo1
     networks:
       - localnet
-    command: "tail -f /dev/null"
+    command: bash -c "./initialize-container.sh ; tail -f /dev/null"
 
 
 networks:
