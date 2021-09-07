@@ -13,4 +13,4 @@ curl --connect-timeout 5 \
 }' http://connect:8083/connectors -w "\n"
 # checking this topic triggers a leader election. This is a temporary fix.
 # <TODO: Figure out a better way to trigger election and fix Broker: Leader not available error>
-kafkacat -b broker:29092 -C -t CDCTutorial.source
+kafkacat -b broker:29092 -C -t CDCTutorial.Source
