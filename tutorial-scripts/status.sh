@@ -1,6 +1,6 @@
 printf '\nKafka topics:\n'
 
-kafkacat -b broker -L | grep topic
+kafkacat -b broker:29092 -L | grep topic
 
 printf '\nThe status of the connectors:\n'
 
