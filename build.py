@@ -3,11 +3,11 @@ import shutil
 
 REPLACE_CONSTANT="MONGODB_KAFKA_CONNECTOR_VERSION"
 SRC_DIR = "source"
+# v1.3 not included in replace map as v1.3 does not include CDC Handler
 REPLACE_MAP = {
     "v1.6": "1.6.1",
     "v1.5": "1.5.1",
     "v1.4": "1.4.0",
-    "v1.3": "1.3.0",
 }
 
 #https://stackoverflow.com/questions/4205854/python-way-to-recursively-find-and-replace-string-in-text-files
@@ -23,7 +23,7 @@ def findReplace(directory, find, replace, filePattern):
 
 def copyThenReplace(src, dst, replace):
     destination = shutil.copytree(src, dst) 
-    findReplace(dst, REPLACE_CONSTANT, replace, "Dockerfile*")
+    findReplace(dst, REPLACE_CONSTANT, replace, "[Dd]ocker*")
 
 for k,v in REPLACE_MAP.items():
     abs_src = os.path.abspath(SRC_DIR)
